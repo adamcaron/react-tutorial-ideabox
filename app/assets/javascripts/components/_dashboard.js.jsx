@@ -14,6 +14,7 @@ var Dashboard = React.createClass({ // react component
 
         <ButtonBox onButtonClick={this.onButtonBoxClick} />
         <ContentBox text={this.state.value} />
+        <IdeaBox />
       </div>
     )
   }
@@ -41,3 +42,23 @@ var ContentBox = React.createClass({
     )
   }
 })
+
+var IdeaBox = React.createClass({
+  getIdeasFromApi: function () {
+    $.ajax({
+      url: '/api/v1/ideas.json',
+      type: 'GET',
+      success: function (response) {
+        console.log(response);
+      }
+    })
+  },
+  render: function () {
+    this.getIdeasFromApi();
+    return (
+      <div>
+        <h1>We are in the idea box component.</h1>
+      </div>
+    )
+  }
+});
